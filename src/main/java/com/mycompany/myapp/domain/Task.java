@@ -30,6 +30,7 @@ public class Task implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @NotNull
     @ManyToOne
     private User user;
 

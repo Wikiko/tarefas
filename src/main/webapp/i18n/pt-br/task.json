@@ -2,22 +2,22 @@
     "tasksApp": {
         "task" : {
             "home": {
-                "title": "Tasks",
-                "createLabel": "Criar novo Task",
-                "createOrEditLabel": "Criar ou editar Task"
+                "title": "Tarefa",
+                "createLabel": "Criar novo Tarefa",
+                "createOrEditLabel": "Criar ou editar Tarefa"
             },
-            "created": "Um novo Task foi criado com o identificador {{ param }}",
-            "updated": "Um Task foi atualizado com o identificador {{ param }}",
-            "deleted": "Um Task foi deletado com o identificador {{ param }}",
+            "created": "A Tarefa {{ param }} foi criada com sucesso.",
+            "updated": "A Tarefa {{ param }} foi alterada com sucesso.",
+            "deleted": "A Tarefa {{ param }} foi deletada com sucesso.",
             "delete": {
-                "question": "Tem certeza de que deseja excluir Task {{ id }}?"
+                "question": "Tem certeza de que deseja excluir a Tarefa: {{ param }}?"
             },
             "detail": {
-                "title": "Task"
+                "title": "Tarefa:"
             },
-            "title": "Title",
-            "description": "Description",
-            "user": "User"
+            "title": "Título",
+            "description": "Descrição",
+            "user": "Usuário"
         }
     }
 }

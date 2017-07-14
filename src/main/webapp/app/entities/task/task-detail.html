@@ -1,20 +1,16 @@
 
 <div>
-    <h2><span data-translate="tasksApp.task.detail.title">Task</span> {{vm.task.id}}</h2>
+    <h2><span data-translate="tasksApp.task.detail.title">Task</span> {{vm.task.title}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="tasksApp.task.title">Title</span></dt>
-        <dd>
-            <span>{{vm.task.title}}</span>
-        </dd>
         <dt><span data-translate="tasksApp.task.description">Description</span></dt>
         <dd>
             <span>{{vm.task.description}}</span>
         </dd>
         <dt><span data-translate="tasksApp.task.user">User</span></dt>
         <dd>
-            {{vm.task.user.id}}
+            {{vm.task.user.firstName}}
         </dd>
     </dl>
 
