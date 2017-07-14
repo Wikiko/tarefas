@@ -21,7 +21,7 @@
                     <th><span data-translate="tasksApp.task.title">Title</span></th>
                     <th><span data-translate="tasksApp.task.description">Description</span></th>
                     <th><span data-translate="tasksApp.task.user">User</span></th>
-                    <th></th>
+                    <th><span data-translate="tasksApp.task.sendEmail">Send Email</span></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +30,9 @@
                     <td>{{task.description}}</td>
                     <td>
                         {{task.user.firstName}}
+                    </td>
+                    <td>
+                        {{task.sendEmail}}
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

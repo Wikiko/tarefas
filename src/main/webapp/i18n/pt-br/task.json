@@ -13,11 +13,12 @@
                 "question": "Tem certeza de que deseja excluir a Tarefa: {{ param }}?"
             },
             "detail": {
-                "title": "Tarefa:"
+                "title": "Tarefa"
             },
             "title": "Título",
             "description": "Descrição",
-            "user": "Usuário"
+            "user": "Usuário",
+            "sendEmail": "Envia Email"
         }
     }
 }
