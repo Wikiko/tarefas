@@ -32,6 +32,11 @@
     "nativeLanguage": "pt-br",
     "languages": [
       "pt-br"
-    ]
+    ],
+    "appsFolders": [
+      "tarefas"
+    ],
+    "directoryPath": "../",
+    "monitoring": "elk"
   }
 }

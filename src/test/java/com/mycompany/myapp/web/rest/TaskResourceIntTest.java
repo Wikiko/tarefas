@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.TasksApp;
 
 import com.mycompany.myapp.domain.Task;
+import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.TaskRepository;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
 
@@ -43,6 +44,9 @@ public class TaskResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_SEND_EMAIL = false;
+    private static final Boolean UPDATED_SEND_EMAIL = true;
+
     @Autowired
     private TaskRepository taskRepository;
 
@@ -81,7 +85,13 @@ public class TaskResourceIntTest {
     public static Task createEntity(EntityManager em) {
         Task task = new Task()
             .title(DEFAULT_TITLE)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .sendEmail(DEFAULT_SEND_EMAIL);
+        // Add required entity
+        User user = UserResourceIntTest.createEntity(em);
+        em.persist(user);
+        em.flush();
+        task.setUser(user);
         return task;
     }
 
@@ -107,6 +117,7 @@ public class TaskResourceIntTest {
         Task testTask = taskList.get(taskList.size() - 1);
         assertThat(testTask.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testTask.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testTask.isSendEmail()).isEqualTo(DEFAULT_SEND_EMAIL);
     }
 
     @Test
@@ -176,7 +187,8 @@ public class TaskResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(task.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].sendEmail").value(hasItem(DEFAULT_SEND_EMAIL.booleanValue())));
     }
 
     @Test
@@ -191,7 +203,8 @@ public class TaskResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(task.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.sendEmail").value(DEFAULT_SEND_EMAIL.booleanValue()));
     }
 
     @Test
@@ -213,7 +226,8 @@ public class TaskResourceIntTest {
         Task updatedTask = taskRepository.findOne(task.getId());
         updatedTask
             .title(UPDATED_TITLE)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .sendEmail(UPDATED_SEND_EMAIL);
 
         restTaskMockMvc.perform(put("/api/tasks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -226,6 +240,7 @@ public class TaskResourceIntTest {
         Task testTask = taskList.get(taskList.size() - 1);
         assertThat(testTask.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testTask.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testTask.isSendEmail()).isEqualTo(UPDATED_SEND_EMAIL);
     }
 
     @Test

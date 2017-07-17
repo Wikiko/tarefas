@@ -32,6 +32,12 @@
             }
         }
 
+        function checkSendEmail() {
+            if (vm.task.sendEmail === true) {
+
+            }
+        }
+
         function onSaveSuccess (result) {
             $scope.$emit('tasksApp:taskUpdate', result);
             $uibModalInstance.close(result);

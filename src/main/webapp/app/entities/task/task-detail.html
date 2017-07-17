@@ -1,4 +1,3 @@
-
 <div>
     <h2><span data-translate="tasksApp.task.detail.title">Task</span> {{vm.task.title}}</h2>
     <hr>
@@ -8,9 +7,15 @@
         <dd>
             <span>{{vm.task.description}}</span>
         </dd>
+        <dt><span data-translate="tasksApp.task.sendEmail">Send Email</span></dt>
+        <dd>
+            <span>
+                <input type="checkbox" ng-model="vm.task.sendEmail" disabled>
+            </span>
+        </dd>
         <dt><span data-translate="tasksApp.task.user">User</span></dt>
         <dd>
-            {{vm.task.user.firstName}}
+            {{vm.task.user.login}}
         </dd>
     </dl>
 

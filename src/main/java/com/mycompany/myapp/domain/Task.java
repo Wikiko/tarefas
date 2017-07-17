@@ -30,8 +30,11 @@ public class Task implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "send_email")
+    private Boolean sendEmail;
+
+    @ManyToOne(optional = false)
     @NotNull
-    @ManyToOne
     private User user;
 
     public Long getId() {
@@ -66,6 +69,19 @@ public class Task implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean isSendEmail() {
+        return sendEmail;
+    }
+
+    public Task sendEmail(Boolean sendEmail) {
+        this.sendEmail = sendEmail;
+        return this;
+    }
+
+    public void setSendEmail(Boolean sendEmail) {
+        this.sendEmail = sendEmail;
     }
 
     public User getUser() {
@@ -107,6 +123,7 @@ public class Task implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
+            ", sendEmail='" + isSendEmail() + "'" +
             "}";
     }
 }

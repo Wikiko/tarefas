@@ -106,6 +106,7 @@
                             return {
                                 title: null,
                                 description: null,
+                                sendEmail: null,
                                 id: null
                             };
                         }
