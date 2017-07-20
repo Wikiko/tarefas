@@ -12,6 +12,10 @@
             "delete": {
                 "question": "Tem certeza de que deseja excluir a Tarefa {{ param }}?"
             },
+            "emailSent": {
+                "success":  "E-mail enviado com sucesso para Usuário: {{ param }}",
+                "fail": "Não foi possível enviar o email. Verifique se na Tarefa {{ param }} a opção enviar e-mail está selecionada."
+            },
             "detail": {
                 "title": "Tarefa"
             },

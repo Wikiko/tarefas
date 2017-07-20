@@ -18,7 +18,6 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="tasksApp.task.title">Title</span></th>
                     <th><span data-translate="tasksApp.task.description">Description</span></th>
                     <th><span data-translate="tasksApp.task.sendEmail">Send Email</span></th>
@@ -28,7 +27,6 @@
             </thead>
             <tbody>
                 <tr ng-repeat="task in vm.tasks track by task.id">
-                    <td><a ui-sref="task-detail({id:task.id})">{{task.id}}</a></td>
                     <td>{{task.title}}</td>
                     <td>{{task.description}}</td>
                     <td><input type="checkbox" ng-model="task.sendEmail" disabled/></td>

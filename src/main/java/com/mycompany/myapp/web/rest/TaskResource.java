@@ -8,6 +8,8 @@ import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,8 @@ public class TaskResource {
 
     private final TaskRepository taskRepository;
 
+    @Autowired
+    @Lazy
     public TaskResource(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
@@ -47,7 +51,13 @@ public class TaskResource {
     public ResponseEntity<Task> createTask(@Valid @RequestBody Task task) throws URISyntaxException {
         log.debug("REST request to save Task : {}", task);
         if (task.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new task cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest()
+                .headers(
+                    HeaderUtil
+                        .createFailureAlert(
+                            ENTITY_NAME, "idexists", "A new task cannot already have an ID"
+                        )
+                ).body(null);
         }
         Task result = taskRepository.save(task);
         return ResponseEntity.created(new URI("/api/tasks/" + result.getId()))
